@@ -1,8 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'List')
-
 @section('content')
+
 <h3 class="text-center mt-3">Posts list</h3>
 <a href="{{route('posts.create')}}" class="btn btn-primary float-right mb-3">Create Post</a>
 <table class="table" id="posts">
@@ -30,9 +29,9 @@
 	      <td>
       		<a href="{{route('posts.edit', $post->id)}}" class="btn btn-secondary">Edit</a>   
       		<button class="btn btn-danger delete-post-btn" data-id="{{$post->id}}">Delete</button>	
-      	</td>
+      	</td>	
       	@empty
-      		<td>No record found</td>	
+      		<td>No record found</td>
       </tr>
     @endforelse
   </tbody>
@@ -71,5 +70,5 @@
 			});
 		}
 	});
-</script>
+</script> 
 @endsection

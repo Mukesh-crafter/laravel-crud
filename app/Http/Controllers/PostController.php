@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Auth;
 
 
 class PostController extends Controller
@@ -16,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {   
-        $posts = Post::all();
+        $posts = auth()->user()->posts;
 
         return view('posts.index', compact('posts'));
     }
@@ -39,16 +40,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {   
-        $this->validate($request, [
+        $post = $request->validate([
             'title'=>'required',
             'description'=>'required',
-         ]);
+        ]);
 
-        $post = $request->except('_token');
+        $posts = auth()->user()->posts()->create($post);
 
-        Post::create($post);
-
-        return redirect()->route('posts.index');
+        return back()->with('success', 'Post created successfully.');
+         
     }
 
     /**
@@ -82,19 +82,17 @@ class PostController extends Controller
      */
     public function update(Post $post, Request $request)
     {   
-        $this->validate($request, [
+        $request->validate([
             'title'=>'required',
             'description'=>'required',
         ]);
-
-        // $posts = Post::find($id);
 
         $post->title = $request->input('title');
         $post->description = $request->input('description');
 
         $post->save();
 
-        return redirect()->route('posts.index');
+        return back()->with('success', 'Post updated successfully.');
     }
 
     /**
@@ -103,13 +101,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($id);
-
-        if ($post) {
-           $post->delete();
-        }
+        $post->delete();
 
         return redirect()->route('posts.index');
     }

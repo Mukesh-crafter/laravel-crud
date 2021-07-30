@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Models\User;
 
 
 /*
@@ -22,18 +23,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/update', [profileController::class, 'update']);
-
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('/dashboard', function () {
-    return view('dashboard');
+		$id = Auth::user()->id;
+		$posts = Auth::user()->posts;
+    return view('dashboard', compact('posts'));
 	})->name('dashboard');
 
 	Route::view('profile', 'profile')->name('profile');
+	Route::	put('profile',[profileController::class, 'update'])->name('profile.update');
 
 });
 
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->middleware('auth');;
 
 
 require __DIR__.'/auth.php';
