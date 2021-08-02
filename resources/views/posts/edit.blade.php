@@ -15,13 +15,12 @@
   	</div>
   	<div class="form-group">
     	<label>Description</label>
-    	<textarea class="form-control" name="description" rows="3" />{{ $post->description }}</textarea>
+    	<textarea class="form-control" name="description" rows="4" />{{ $post->description }}</textarea>
     	<small class="text-danger">{{ $errors->first('description') }}</small>
   	</div>
    	<input type="submit" class="btn btn-success" value="Update">
    	<input type="reset" class="btn btn-outline-secondary float-right" value="Reset">
 </form>
-
 @endsection
 
  

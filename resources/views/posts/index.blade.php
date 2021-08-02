@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Posts')
+
 @section('content')
 
 <h3 class="text-center mt-3">Posts list</h3>

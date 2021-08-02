@@ -40,14 +40,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {   
-        $post = $request->validate([
+        $input = $request->validate([
             'title'=>'required',
             'description'=>'required',
         ]);
 
-        $posts = auth()->user()->posts()->create($post);
+        $post = auth()->user()->posts()->create($input);
 
-        return back()->with('success', 'Post created successfully.');
+        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
          
     }
 
@@ -82,17 +82,14 @@ class PostController extends Controller
      */
     public function update(Post $post, Request $request)
     {   
-        $request->validate([
+        $data = $request->validate([
             'title'=>'required',
             'description'=>'required',
         ]);
 
-        $post->title = $request->input('title');
-        $post->description = $request->input('description');
+        $post->update($data);
 
-        $post->save();
-
-        return back()->with('success', 'Post updated successfully.');
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
 
     /**
