@@ -3,21 +3,20 @@
 @section('title', 'Create')
 
 @section('content')
-
-<form method="post" action="{{ route('posts.store') }}">
+<p class="text-center">Create Post</p>
+<form class="space-y-5" method="post" action="{{ route('posts.store') }}">
 	@csrf
-	<h3 class="text-center">Create Post</h3>
-  	<div class="form-group">
-	    <label>Title</label>
-	    <input type="text" name="title" class="form-control" autofocus/>
+  	<div class="flex flex-col">
+	    <label class="">Title</label>
+	    <input type="text" name="title" class="border border-gray-400 rounded" autofocus/>
 	   	<small class="text-danger">{{ $errors->first('title') }}</small>
   	</div>
-  	<div class="form-group">
-	    <label>Description</label>
-	    <textarea class="form-control" name="description" rows="4" /></textarea>
+  	<div class="flex flex-col">
+	    <label class="">Description</label>
+	    <textarea class="border border-gray-400 rounded" name="description" rows="4" /></textarea>
 	    <small class="text-danger">{{ $errors->first('description') }}</small>
 	</div>
-   	<input type="submit" class="btn btn-danger" value="Create">
+   	<input type="submit" class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded" value="Create">
 </form>
 @endsection
  

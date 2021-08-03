@@ -9,8 +9,9 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-
-    require('./bootstrap');
+    window.Swal = require('sweetalert');
+    require( 'datatables.net-dt/css/jquery.dataTables.min.css' );
+    require( 'datatables.net/js/jquery.dataTables.min.js' );
 } catch (e) {}
 
 /**

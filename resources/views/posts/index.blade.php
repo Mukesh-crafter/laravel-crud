@@ -4,10 +4,9 @@
 
 @section('content')
 
-<h3 class="text-center mt-3">Posts list</h3>
-<a href="{{route('posts.create')}}" class="btn btn-primary float-right mb-3">Create Post</a>
-<table class="table" id="posts">
-  <thead>
+<a href="{{route('posts.create')}}" class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded float-right  mb-2">Create Post</a>
+ <table class="table border w-full" id="posts">
+  <thead class="bg-gray-50 text-center">
     <tr>
     	<th>ID</th>
       <th>TITLE</th>
@@ -18,7 +17,7 @@
   </thead>
   <tbody>
       @forelse($posts as $post)
-      <tr>
+      <tr class="text-center border">
       	<td>{{ $post->id }}</td>
       	<td>{{ $post->title }}</td>
       	<td>{{ $post->description }}</td>
@@ -29,8 +28,8 @@
 	      	</form>
 	      </td>
 	      <td>
-      		<a href="{{route('posts.edit', $post->id)}}" class="btn btn-secondary">Edit</a>   
-      		<button class="btn btn-danger delete-post-btn" data-id="{{$post->id}}">Delete</button>	
+      		<a href="{{route('posts.edit', $post->id)}}" class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded">Edit</a>   
+      		<button class="delete-post-btn bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded" data-id="{{$post->id}}">Delete</button>	
       	</td>	
       	@empty
       		<td>No record found</td>
@@ -38,8 +37,7 @@
     @endforelse
   </tbody>
 </table>
-
-
+<!-- script -->
 <script>
 	$(function(){
 		let $posts = $('#posts');
@@ -47,7 +45,6 @@
 		
 		$posts.DataTable();
 		$deletePostBtn.on('click', deletePost);
-
 
 		function deletePost(e) {
 			var id = $(this).data('id');

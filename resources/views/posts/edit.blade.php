@@ -3,23 +3,22 @@
 @section('title', 'Edit')
 
 @section('content')
-
-<form method="post" action="{{route('posts.update', $post->id)}}">
+<p class="text-center ">Edit Post</p>
+<form class="space-y-5" method="post" action="{{route('posts.update', $post->id)}}">
 	@method('put')
 	@csrf
-	<h3 class="text-center">Edit Post</h3>
-  	<div class="form-group">
+  	<div class="flex flex-col">
     	<label>Title</label>
-    	<input type="text" name="title" class="form-control" value="{{ $post->title }}" autofocus />
+    	<input type="text" name="title" class="border border-gray-400 rounded" value="{{ $post->title }}" autofocus />
      	<small class="text-danger">{{ $errors->first('title') }}</small>
   	</div>
-  	<div class="form-group">
+  	<div class="flex flex-col">
     	<label>Description</label>
-    	<textarea class="form-control" name="description" rows="4" />{{ $post->description }}</textarea>
+    	<textarea class="border border-gray-400 rounded" name="description" rows="4" />{{ $post->description }}</textarea>
     	<small class="text-danger">{{ $errors->first('description') }}</small>
   	</div>
-   	<input type="submit" class="btn btn-success" value="Update">
-   	<input type="reset" class="btn btn-outline-secondary float-right" value="Reset">
+   	<input type="submit" class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded" value="Update">
+   	<input type="reset" class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded" value="Reset">
 </form>
 @endsection
 
