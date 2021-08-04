@@ -9,6 +9,7 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	</head>
 <body>
+	
 	<x-app-layout>
 	    <x-slot name="header">
 	        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
